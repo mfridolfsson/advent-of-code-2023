@@ -6,7 +6,7 @@ use std::fs::read_to_string;
 //use std::mem::replace;
 
 fn main() {
-    println!("Hello, world!");
+    println!("Begin:");
 
     let file_path = "week1.txt";
 
