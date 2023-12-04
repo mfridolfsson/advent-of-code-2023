@@ -63,7 +63,7 @@ fn main() {
 
     while should_loop == 1 {
 
-        println!("Run List: {:?}", run_list);
+        //println!("Run List: {:?}", run_list);
         for card_id in run_list {
             let mut card_value:i32 = 0;
             let mut this_card_data = "";
@@ -78,16 +78,24 @@ fn main() {
             output = output + 1;
             card_value = this_re_run_list.len() as i32;
             re_run_list.append(&mut this_re_run_list);
-            println!("rerun list len: {:?}", re_run_list.len());
+            //println!("rerun list len: {:?}", re_run_list.len());
     
             
-            println!("Card Value: {:?}", card_value);
+            //println!("Card Value: {:?}", card_value);
         }
         run_list = Vec::new();
         run_list.append(&mut re_run_list);
 
         println!("-----------------------------RERUNNING-----------------------------------------");
         println!("New Run List len: {:?}", run_list.len());
+
+
+        let minValue = run_list.iter().min();
+        match minValue {
+            Some(min) => println!( "Min value: {}", min ),
+            None      => println!( "Vector is empty" ),
+        }
+        
 
         if run_list.len() > 0 {
             should_loop = 1;
@@ -132,21 +140,21 @@ fn fn_run_card(this_card_data:&str, card_id:&i32) -> Vec<i32> {
     let mut card_value:i32 = 0;
     let mut re_run_list: Vec<i32> = Vec::new();
 
-    println!("running card: {:?}", card_id);
+    //println!("running card: {:?}", card_id);
 
     let id_vs_data_vec:Vec<String> = this_card_data.split("|").map(|s| s.to_string()).collect();
     let winning_numbers_data_raw = id_vs_data_vec[0].as_str();
     let card_numbers_data_raw = id_vs_data_vec[1].as_str();
 
-    println!("winning numbers raw: {}", winning_numbers_data_raw);
-    println!("card numbers raw: {}", card_numbers_data_raw);
+    //println!("winning numbers raw: {}", winning_numbers_data_raw);
+    //println!("card numbers raw: {}", card_numbers_data_raw);
 
     //strip out double spaces
     let re = Regex::new(r"(  )").unwrap();
     let winning_numbers_data = re.replace_all(winning_numbers_data_raw ," ");
     let card_numbers_data = re.replace_all(card_numbers_data_raw ," ");
-    println!("Winning numbers: {}", winning_numbers_data);
-    println!("Card numbers: {}", card_numbers_data);
+    //println!("Winning numbers: {}", winning_numbers_data);
+    //println!("Card numbers: {}", card_numbers_data);
 
     let winning_numbers_vec:Vec<String> = winning_numbers_data.split(" ").map(|s| s.to_string()).collect();
     
@@ -154,12 +162,12 @@ fn fn_run_card(this_card_data:&str, card_id:&i32) -> Vec<i32> {
     for winning_number in winning_numbers_vec {
         let card_numbers_vec:Vec<String> = card_numbers_data.split(" ").map(|s| s.to_string()).collect();
         if winning_number.len() > 0 {
-            println!("Checking for winnng Number: {:?}", winning_number);
+            //println!("Checking for winnng Number: {:?}", winning_number);
 
             for card_number in card_numbers_vec {
                 if card_number.len() > 0 {
                     if card_number == winning_number {
-                    println!("Winning Number found!: {:?}", card_number);
+                    //println!("Winning Number found!: {:?}", card_number);
                     card_value = card_value + 1;
                     }
                 }
@@ -173,13 +181,13 @@ fn fn_run_card(this_card_data:&str, card_id:&i32) -> Vec<i32> {
 
     while copy_card < card_to_copy_to
     {
-        println!("copy card: {:?}", copy_card);
+        //println!("copy card: {:?}", copy_card);
         re_run_list.push(copy_card);
         copy_card = copy_card + 1;
       
     }
 
-    println!("rerun list: {:?}", re_run_list);
+    //println!("rerun list: {:?}", re_run_list);
     re_run_list
 }
 
