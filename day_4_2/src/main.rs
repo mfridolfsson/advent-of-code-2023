@@ -174,18 +174,24 @@ fn fn_run_card(this_card_data:&str, card_id:&i32) -> Vec<i32> {
             }
         }
     }
-
-    let mut next_card_id_int = card_id + 1;
-    let card_to_copy_to = next_card_id_int + card_value;
-    let mut copy_card = next_card_id_int;
-
-    while copy_card < card_to_copy_to
+ 
+    if card_value > 0
     {
-        //println!("copy card: {:?}", copy_card);
-        re_run_list.push(copy_card);
-        copy_card = copy_card + 1;
-      
+        let mut next_card_id_int = card_id + 1;
+        let card_to_copy_to = next_card_id_int + card_value;
+        let mut copy_card = next_card_id_int;
+    
+        while copy_card < card_to_copy_to
+        {
+            //println!("copy card: {:?}", copy_card);
+            re_run_list.push(copy_card);
+            copy_card = copy_card + 1;
+          
+        }
+
     }
+
+
 
     //println!("rerun list: {:?}", re_run_list);
     re_run_list
